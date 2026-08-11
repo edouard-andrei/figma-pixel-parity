@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figma Pixel Parity"
+  short_description: "Match a React component to an exact Figma node"
+  default_prompt: "Use $figma-pixel-parity to match this React component to the supplied Figma node with Playwright screenshot evidence."

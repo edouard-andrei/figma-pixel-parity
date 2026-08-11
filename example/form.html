@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- ?variant=design renders the "Figma" truth; ?variant=render renders the wrong build. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root { color-scheme: light }
+  body { margin: 0; background: transparent; font-family: sans-serif }
+  .card {
+    width: 360px; box-sizing: border-box; padding: 28px 24px;
+    background: #fff; border: 1px solid #e4e4e7; border-radius: 12px;
+  }
+  h1 { margin: 0 0 20px; font-size: 18px; font-weight: 600; color: #18181b }
+  label { display: block; font-size: 12px; font-weight: 500; color: #52525b; margin-bottom: 6px }
+  input {
+    width: 100%; box-sizing: border-box; height: 38px; margin-bottom: 16px; padding: 0 12px;
+    font: inherit; font-size: 14px; color: #18181b;
+    background: #fff; border: 1px solid #d4d4d8; border-radius: 8px;
+  }
+  button {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 40px; padding: 0 16px; font: inherit; font-size: 14px; font-weight: 500;
+    color: #fff; background: #18181b; border: 0; border-radius: 8px;
+  }
+  /* The two defects: the button does not fill the card, and it uses the wrong icon. */
+  .design button { width: 100% }
+  .render button { width: auto }
+  .design .icon-check, .render .icon-arrow { display: none }
+</style>
+</head>
+<body>
+  <div class="card" data-figma-parity="component">
+    <h1>Create account</h1>
+    <label for="email">Email</label>
+    <input id="email" value="ada@example.com" readonly>
+    <label for="password">Password</label>
+    <input id="password" type="password" value="hunter22" readonly>
+    <button>
+      <svg class="icon-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+      <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6L9 17l-5-5"/>
+      </svg>
+      Sign up
+    </button>
+  </div>
+  <script>
+    const variant = new URLSearchParams(location.search).get('variant') ?? 'design';
+    document.querySelector('.card').classList.add(variant);
+  </script>
+</body>
+</html>
